@@ -14,7 +14,7 @@
   --g500:#2e9e5b;--g600:#1f7a42;--g700:#155c30;--g800:#0d3d1f;
   --r50:#fef2f2;--r100:#fee2e2;--r200:#fecaca;--r600:#dc2626;
   --b50:#eff6ff;--b100:#dbeafe;--b600:#2563eb;
-  --o50:#fff7ed;--o200:#fed7aa;--o600:#ea580c;
+
   --cream:#fefcf7;--dark:#0f1a12;
   --tm:#1a2e1f;--ts:#5a7060;--tl:#8fa695;
   --brd:rgba(30,70,40,.11);--brd2:rgba(30,70,40,.21);
@@ -31,17 +31,7 @@ button{cursor:pointer}
 .loader{width:44px;height:44px;border:4px solid var(--g100);border-top-color:var(--g500);border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .loading-brand{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--g600)}
-/* SETUP */
-#setup-overlay{position:fixed;inset:0;z-index:9998;background:rgba(15,26,18,.65);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:1rem}
-.setup-box{background:var(--cream);border-radius:var(--rxl);max-width:580px;width:100%;box-shadow:var(--shlg);overflow:hidden}
-.setup-hero{background:linear-gradient(135deg,var(--g700),var(--g800));padding:2rem;text-align:center}
-.setup-hero h2{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#fff;margin-bottom:6px}
-.setup-hero p{font-size:12.5px;color:rgba(255,255,255,.65)}
-.setup-body{padding:1.5rem}
-.setup-steps{background:var(--g50);border:1px solid var(--g200);border-radius:10px;padding:14px 16px;margin-bottom:1rem;font-size:12.5px;color:var(--ts);line-height:1.7}
-.setup-steps ol{padding-left:1.2rem}
-.setup-steps li{margin-bottom:4px}
-.setup-steps code{background:var(--g100);color:var(--g700);padding:1px 6px;border-radius:4px;font-size:11.5px}
+
 /* SYNC */
 .sync-pill{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--ts);white-space:nowrap;flex-shrink:0;padding:4px 10px;border-radius:100px;background:var(--g50);border:1px solid var(--brd)}
 .sync-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
@@ -205,7 +195,7 @@ tfoot td{padding:10px 12px;border-top:1.5px solid var(--brd2);background:var(--g
 .login-hero h2{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#fff;margin-bottom:4px}
 .login-hero p{font-size:12.5px;color:rgba(255,255,255,.65)}
 .login-body{padding:1.5rem}
-.login-hint{background:var(--o50);border:1px solid var(--o200);border-radius:9px;padding:10px 13px;font-size:12px;color:var(--o600);margin-bottom:1rem;display:flex;align-items:flex-start;gap:7px}
+
 .pass-wrap{position:relative}.pass-wrap input{padding-right:44px}
 .pass-toggle{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--ts);font-size:14px;padding:2px}
 /* HERO */
@@ -244,45 +234,7 @@ tfoot td{padding:10px 12px;border-top:1.5px solid var(--brd2);background:var(--g
   <p id="loading-msg">Memuat data dari Google Sheets...</p>
 </div>
 
-<!-- SETUP OVERLAY -->
-<div id="setup-overlay">
-  <div class="setup-box">
-    <div class="setup-hero">
-      <div style="font-size:2.5rem;margin-bottom:.5rem">🌿</div>
-      <h2>Hubungkan Google Sheets</h2>
-      <p>Satu kali setup — data tersimpan permanen di Google Sheets Anda</p>
-    </div>
-    <div class="setup-body">
-      <div class="setup-steps">
-        <strong style="color:var(--g600);display:block;margin-bottom:8px">📋 Langkah Setup:</strong>
-        <ol>
-          <li>Buka Google Drive → buat <strong>Google Sheet</strong> baru di folder Anda</li>
-          <li>Di Sheet → klik <code>Extensions</code> → <code>Apps Script</code></li>
-          <li>Hapus kode lama, paste kode dari file <code>Code.gs</code> yang terlampir → Save</li>
-          <li>Klik <code>Deploy</code> → <code>New deployment</code> → tipe: <code>Web app</code></li>
-          <li>Execute as: <strong>Me</strong> &nbsp;|&nbsp; Who has access: <strong>Anyone</strong> → Deploy</li>
-          <li>Copy <strong>Web app URL</strong> yang muncul → paste di bawah ini</li>
-        </ol>
-      </div>
-      <div class="fg">
-        <label>URL Google Apps Script (Web App)</label>
-        <input type="text" id="setup-url-input" placeholder="https://script.google.com/macros/s/.../exec"
-          onkeydown="if(event.key==='Enter')connectSheet()"/>
-      </div>
-      <div id="setup-error" style="display:none;background:var(--r100);border:1px solid var(--r200);border-radius:9px;padding:9px 13px;font-size:12px;color:var(--r600);margin-bottom:.9rem">
-        <i class="fa-solid fa-triangle-exclamation"></i> URL tidak valid. Harus dimulai dengan https://script.google.com
-      </div>
-      <div style="display:flex;gap:8px">
-        <button class="btn btn-o" style="flex:1;justify-content:center" onclick="gunakanDataLokal()">
-          <i class="fa-solid fa-database"></i> Pakai Data Lokal
-        </button>
-        <button class="btn btn-g" style="flex:1;justify-content:center" onclick="connectSheet()">
-          <i class="fa-solid fa-plug"></i> Hubungkan Sheets
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 <!-- NAV -->
 <nav>
@@ -439,8 +391,7 @@ tfoot td{padding:10px 12px;border-top:1.5px solid var(--brd2);background:var(--g
           <div class="card-b">
             <p style="font-size:12.5px;color:var(--ts);line-height:1.75">
               Perubahan harga <strong>hanya berlaku untuk setoran baru</strong>. Data historis tidak berubah.<br/><br/>
-              Semua perubahan tersimpan otomatis ke <strong>Google Sheets</strong>.<br/><br/>
-              <button class="btn-sm bso" onclick="changeScriptUrl()"><i class="fa-solid fa-gear"></i> Ganti URL Sheets</button>
+              Semua perubahan tersimpan otomatis ke <strong>Google Sheets</strong>.
             </p>
           </div>
         </div>
@@ -484,11 +435,7 @@ tfoot td{padding:10px 12px;border-top:1.5px solid var(--brd2);background:var(--g
       <p>Bank Sampah Hijau Lestari</p>
     </div>
     <div class="login-body">
-      <div class="login-hint">
-        <i class="fa-solid fa-circle-info" style="flex-shrink:0;margin-top:1px"></i>
-        <div>Username: <strong>admin</strong> &nbsp;·&nbsp; Password: <strong>banksampah2026</strong><br/>
-        <span style="font-size:11px;opacity:.8">Ganti di kode HTML (variabel CRED)</span></div>
-      </div>
+
       <div class="fg"><label>Username</label><input type="text" id="l-user" placeholder="admin" onkeydown="if(event.key==='Enter')document.getElementById('l-pass').focus()"/></div>
       <div class="fg"><label>Password</label>
         <div class="pass-wrap">
@@ -616,7 +563,7 @@ tfoot td{padding:10px 12px;border-top:1.5px solid var(--brd2);background:var(--g
 <script>
 // ═══ CONFIG ═══
 const CRED = { user: 'admin', pass: 'banksampah2026' };
-let SCRIPT_URL = localStorage.getItem('bs_script_url') || '';
+let SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyMlekOLnQllRo4aUeyQE1AmiXI7VAZQQdB_lOBrphi1fLQUvT9bHxnaGyX15H3zg1L/exec';
 
 // ═══ STATE ═══
 let isAdmin = sessionStorage.getItem('bs_admin') === '1';
@@ -694,27 +641,9 @@ function initSeed(){
 }
 
 // ═══ GOOGLE SHEETS ═══
-function connectSheet(){
-  const url=document.getElementById('setup-url-input').value.trim();
-  document.getElementById('setup-error').style.display='none';
-  if(!url.includes('script.google.com')){document.getElementById('setup-error').style.display='';return}
-  localStorage.setItem('bs_script_url',url);SCRIPT_URL=url;
-  document.getElementById('setup-overlay').style.display='none';
-  loadFromSheets();
-}
-function gunakanDataLokal(){
-  document.getElementById('setup-overlay').style.display='none';
-  initSeed();hideLoading();applyRole();renderBeranda();
-  showToast('Mode data lokal — data tidak tersimpan permanen','tr');
-}
-function changeScriptUrl(){
-  const url=prompt('Masukkan URL Google Apps Script baru:',SCRIPT_URL);
-  if(!url)return;
-  localStorage.setItem('bs_script_url',url);SCRIPT_URL=url;
-  loadFromSheets();
-}
+
 function loadFromSheets(){
-  if(!SCRIPT_URL){hideLoading();document.getElementById('setup-overlay').style.display='flex';return}
+
   showLoading('Memuat data dari Google Sheets...');setSyncStatus('loading');
   const cb='gsL_'+Date.now();
   const to=setTimeout(()=>{delete window[cb];hideLoading();initSeed();setSyncStatus('error');showToast('Timeout — pakai data lokal','tr');applyRole();renderBeranda();},12000);
@@ -738,7 +667,7 @@ function loadFromSheets(){
   document.head.appendChild(s);
 }
 function saveToSheets(immediate){
-  if(!SCRIPT_URL)return;
+
   setSyncStatus('saving');clearTimeout(saveTimer);
   saveTimer=setTimeout(async()=>{
     try{
@@ -749,7 +678,7 @@ function saveToSheets(immediate){
 }
 function setSyncStatus(s){
   const el=document.getElementById('sync-status');if(!el)return;
-  el.style.display=SCRIPT_URL?'flex':'none';
+  el.style.display='flex';
   const m={ok:'<div class="sync-dot" style="background:var(--g500)"></div> Tersimpan ke Sheets',saving:'<div class="sync-dot" style="background:#f59e0b;animation:pulse 1s infinite"></div> Menyimpan...',error:'<div class="sync-dot" style="background:var(--r600)"></div> Gagal simpan',loading:'<div class="sync-dot" style="background:var(--b600);animation:pulse 1s infinite"></div> Memuat...'};
   el.innerHTML=m[s]||'';
 }
@@ -983,7 +912,7 @@ function showToast(msg,type=''){const t=document.getElementById('toast');t.textC
 // ═══ INIT ═══
 document.getElementById('t-nas').addEventListener('change',updateSaldoPreview);
 document.getElementById('t-jumlah').addEventListener('input',updateSisaSaldo);
-if(SCRIPT_URL){loadFromSheets();}else{hideLoading();document.getElementById('setup-overlay').style.display='flex';}
+loadFromSheets();
 </script>
 </body>
 </html>
